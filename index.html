@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="Logo.jpeg" type="image/x-icon">
+<title>Gifford High School</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@fontsource/iosevka-charon-mono@5.0.0/index.css" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --primary: #002147;
+  --secondary: #f5f5f5;
+  --card-bg: #ffffff;
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --card-hover-shadow: 0 12px 40px rgba(0,33,71,0.18);
+}
+
+.slogan {
+  text-align: center;
+}
+
+body.dark {
+  --bg: #0d1117;
+  --text: #f1f1f1;
+  --primary: #4dabf7;
+  --secondary: #161b22;
+  --card-bg: #161b22;
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  --card-hover-shadow: 0 12px 40px rgba(77,171,247,0.18);
+}
+
+/* GLOBAL */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Michroma', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* CARD BASE */
+.card {
+  width: 98%;
+  margin: 18px auto;
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 2rem 2.5rem;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  border: 1px solid rgba(0, 33, 71, 0.07);
+}
+
+.card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-4px);
+}
+
+/* TEXT */
+p, li {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+h1, h2, h3 {
+  font-family: 'Michroma', sans-serif;
+}
+
+/* NAV */
+nav {
+  width: 100%;
+  background: var(--primary);
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-links { display: flex; }
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.hamburger { display: none; font-size: 24px; cursor: pointer; }
+
+/* MOBILE NAV */
+@media(max-width:768px){
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--primary);
+  }
+  .nav-links.active { display: flex; }
+  .nav-links a { padding: 12px; border-top: 1px solid rgba(255,255,255,0.2); }
+  .hamburger { display: block; }
+}
+
+/* HERO CARD */
+.hero-card {
+  width: 98%;
+  margin: 18px auto;
+  background: var(--primary);
+  color: white;
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 3rem 2.5rem;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.hero-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-4px);
+}
+
+.hero-card h1 { color: white; margin: 0 0 0.5rem; }
+.hero-card .slogan { color: rgba(255,255,255,0.85); }
+
+/* PORTAL BUTTON */
+.portal-btn {
+  background: white;
+  color: var(--primary);
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 6px;
+  display: inline-block;
+  margin: 20px auto 0;
+  font-family: 'Michroma', sans-serif;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.portal-btn:hover {
+  background: rgba(255,255,255,0.85);
+}
+
+/* SLIDES */
+.slide { display: none; }
+.slide img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+}
+
+/* MAP */
+iframe {
+  width: 100%;
+  height: 300px;
+  border-radius: 1rem;
+  border: none;
+}
+
+/* FOOTER CARD */
+.footer-card {
+  width: 98%;
+  margin: 18px auto;
+  background: var(--secondary);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem 2.5rem;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.footer-card:hover {
+  box-shadow: var(--card-hover-shadow);
+  transform: translateY(-4px);
+}
+
+/* MOBILE FIXES */
+@media(max-width:768px){
+  p, li { text-align: left; }
+  body { font-size: 15px; }
+  h1 { font-size: 1.8rem; line-height: 1.3; }
+  h2 { font-size: 1.4rem; }
+  .card, .hero-card, .footer-card { padding: 1.2rem 1rem; border-radius: 10px; }
+  .slide img { border-radius: 0.5rem; height: 260px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div><strong>Gifford High School</strong></div>
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="nav-links" id="navLinks">
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#academics">Academics</a>
+    <a href="#admissions">Admissions</a>
+    <a href="#students">Students</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <span class="toggle-btn" onclick="toggleMode()" style="cursor:pointer;color:white;margin:0 10px;">DAY/NIGHT</span>
+  </div>
+</nav>
+
+<!-- HERO CARD -->
+<div class="hero-card">
+  <h1>Gifford High School</h1>
+  <p class="slogan">Hinc Orior (From here I arise)</p>
+  <a href="https://mthobisilangada1st.github.io/insyncedportal/index.html" class="portal-btn">Parents Portal</a>
+</div>
+
+<!-- WELCOME CARD -->
+<div class="card">
+  <p>Welcome to <b>Gifford High School</b>, a premier government boys-only institution located in the heart of Bulawayo. Established in 1927 as the Bulawayo Technical School by our founding headmaster, <b>Mr. Philip Henry Gifford</b>, our school has spent nearly a century "arising" from humble beginnings to become a cornerstone of academic and sporting excellence in Zimbabwe.
+  <br><br>
+  At Gifford, we believe that education is about more than just the classroom; it is about building the "Giffordian" spirit. We pride ourselves on a rich tradition that balances a strong technical heritage with a modern, comprehensive curriculum. Our mission is to nurture young men who are not only academically capable but are also disciplined, courageous, and ready to lead in a rapidly changing world.
+  <br><br>
+  From the historic <b>Beit Hall</b> to our expansive sporting fields like <b>Sutherby Field</b>, our campus provides the perfect environment for holistic growth. Whether in the science lab, on the rugby pitch, or in the technical workshop, we empower our students to live out our motto every day: to arise from their beginnings and reach their full potential.</p>
+
+  <b><p>Key Highlights</p></b>
+  <ol>
+    <li><b>Heritage:</b> A historic institution with nearly 100 years of excellence in Bulawayo.</li>
+    <li><b>Technical Excellence:</b> A unique heritage in technical subjects like Wood &amp; Metal Technology and Technical Graphics.</li>
+    <li><b>Sporting Prowess:</b> A proud history of rivalry and success in rugby, cricket, and athletics.</li>
+    <li><b>Holistic Development:</b> A diverse curriculum offering Sciences, Arts, and Commercials alongside ICT and life skills.</li>
+  </ol>
+</div>
+
+<!-- SLIDESHOW CARD -->
+<div class="card">
+  <div class="slideshow">
+    <div class="slide"><img src="Logo.jpeg"></div>
+    <div class="slide"><img src="img10.jpg"></div>
+    <div class="slide"><img src="img11.jpg"></div>
+    <div class="slide"><img src="img12.jpg"></div>
+    <div class="slide"><img src="img13.jpg"></div>
+    <div class="slide"><img src="img14.jpg"></div>
+    <div class="slide"><img src="img15.jpg"></div>
+    <div class="slide"><img src="img2.jpg"></div>
+    <div class="slide"><img src="img6.jpg"></div>
+    <div class="slide"><img src="img4.jpg"></div>
+    <div class="slide"><img src="img5.jpg"></div>
+    <div class="slide"><img src="img7.jpg"></div>
+    <div class="slide"><img src="img8.jpg"></div>
+    <div class="slide"><img src="img9.jpg"></div>
+    <div class="slide"><img src="img2.jpg"></div>
+  </div>
+</div>
+
+<!-- ABOUT CARD -->
+<div class="card" id="about">
+  <h2>About the School</h2>
+  <ul>
+    <b>Full School History</b>
+    <li><b>Founding (1927)</b>: Gifford was established in January 1927 as the <b>Bulawayo Technical School</b>, the first of its kind in the country. It began with just 39 pupils and four teachers under the leadership of the founding headmaster, <b>Mr. Philip Henry Gifford.</b></li>
+    <li><b>The Early Years:</b> The school originally operated from rented premises (St. George's Buildings) and the old Bulawayo Polytechnic site before moving to its current permanent home on <b>Matopos Road</b> in the 1950s.</li>
+    <li><b>Renaming:</b> On August 19, 1961, the school was renamed <b>Gifford Technical High School</b> to honor its founder. In 1974, it became a comprehensive high school, adopting its current name, <b>Gifford High School</b>, while still maintaining its prestigious technical heritage.</li>
+    <li><b>Legacy:</b> For nearly a century, Gifford has been a powerhouse in Bulawayo, known for producing "Giffordians"—young men defined by resilience and the "Hinc Orior" spirit.</li>
+  </ul>
+</div>
+
+<!-- ACADEMICS CARD -->
+<div class="card" id="academics">
+  <h2>Academics</h2>
+  <h3>Curriculum Details</h3>
+  <p>Gifford High School offers a <b>comprehensive and diversified curriculum</b> registered under <b>ZIMSEC</b> (and historically aligned with Cambridge/AEB standards). We provide a three-tier educational path:</p>
+  <ol>
+    <li><b>Junior Level (Form 1–2):</b> A broad foundation in Sciences, Humanities, and Technical Arts.</li>
+    <li><b>O-Level (Form 3–4):</b> Specialization into Science, Commercial, or Technical streams.</li>
+    <li><b>A-Level (Form 5–6):</b> Advanced study preparing students for university and professional technical colleges.</li>
+  </ol>
+
+  <h3>Subjects Offered</h3>
+  <ul>
+    <li><b>Sciences:</b> Mathematics, Combined Science, Biology, Chemistry, Physics, Geography.</li>
+    <li><b>Technical &amp; Vocational (Our Heritage):</b> Wood Technology, Metal Technology, Technical Graphics, Building Technology, Agriculture, ICT/Computer Science.</li>
+    <li><b>Commercials:</b> Principles of Accounts, Business Studies, Economics.</li>
+    <li><b>Humanities &amp; Arts:</b> English Language &amp; Literature, Ndebele, History, Heritage Studies, Family &amp; Religious Studies (FRS).</li>
+  </ul>
+
+  <p><b>Departments</b> To ensure specialized attention, our academic wing is divided into several departments:</p>
+  <ul>
+    <li><b>Department of Technical Arts:</b> (The heart of Gifford's history).</li>
+    <li><b>Department of Sciences &amp; Mathematics.</b></li>
+    <li><b>Department of Languages &amp; Humanities.</b></li>
+    <li><b>Department of Commercials.</b></li>
+    <li><b>Department of ICT &amp; E-Learning.</b></li>
+  </ul>
+</div>
+
+<!-- ADMISSIONS CARD -->
+<div class="card" id="admissions">
+  <h2>Admissions</h2>
+  <p>At Gifford High School, we welcome young men who are eager to uphold the "Giffordian" spirit of excellence and resilience. Our admission process is designed to identify students who will thrive in our balanced academic and technical environment.</p>
+
+  <p><b>Admission Requirements</b> To apply for a place at Gifford High, parents/guardians must provide the following documentation:
+  <br><br>
+  <b>Identification:</b> Certified copy of the student's Birth Certificate and a copy of the parent/guardian's National ID.
+  <br><br></p>
+  <ul>
+    <b>Academic Records:</b>
+    <li><b>For Form 1:</b> Grade 7 Results Slip and the most recent Primary School report.</li>
+    <li><b>For Form 2 – 4:</b> Latest school report and a Transfer Letter (ED12) from the previous school.</li>
+    <li><b>For Lower 6:</b> ZIMSEC O-Level results (minimum requirements apply based on chosen subjects).</li>
+  </ul>
+  <br>
+  <p><b>Proof of Residence:</b> A recent utility bill (water/electricity) to verify the catchment area (if applicable).<br>
+  Passport Photos: Two recent passport-sized photographs of the student.</p>
+
+  <ul>
+    <b>Important Dates (2026 Cycle)</b>
+    <li><b>Lower 6 Enrollment:</b> Applications open immediately following the release of ZIMSEC O-Level results (typically January/February).</li>
+    <li><b>School Tours:</b> Held by appointment during the final term of each year.</li>
+    <li><b>Orientation Day:</b> Conducted a week before the first term begins for all new Form 1 students.</li>
+    <li><b>Annual General meetings</b></li>
+    <li><b>Zimsec Registration dates</b></li>
+  </ul>
+</div>
+
+<!-- LEADERSHIP CARD -->
+<div class="card" id="Leadership">
+  <h2>Staff &amp; Leadership</h2>
+  <h3>Principal's Message</h3>
+  <p>"Welcome to Gifford High School. As we look toward our centenary, our mission remains as clear as it was in 1927: to provide a 'Hinc Orior' foundation for every young man who walks through our gates. We don't just teach subjects; we build character, resilience, and technical expertise. At Gifford, we pride ourselves on being a 'school of choice' for those seeking a balanced, holistic education. I invite you to explore our website and join us in our journey of arising to new heights." — <b>Mrs. B. Dewa, Headmaster.</b></p>
+  <ul>
+    <li><b>List of Teachers &amp; Staff</b></li>
+    <li><b>School Head:</b> Mrs. B. Dewa</li>
+    <li><b>Deputy Head:</b> Mr. C.O Ndhlovu</li>
+    <li><b>SDA Chairman:</b> [Insert Name] (Note: The School Development Association is a key leadership body at Gifford).</li>
+    <li><b>Senior Staff:</b> Organize by Department (e.g., HOD Technical Arts, HOD Sciences, HOD Humanities).</li>
+  </ul>
+</div>
+
+<!-- STUDENTS CARD -->
+<div class="card" id="students">
+  <h2>Students &amp; School Life</h2>
+  <p><b>Extracurricular Activities</b> Gifford is legendary for its vibrant student life. We encourage every Giffordian to find his passion outside the classroom.</p>
+  <ul>
+    <li><b>Cultural:</b> Drama Society, Public Speaking, Quiz Club, and the renowned School Choir.</li>
+    <li><b>Clubs:</b> Interact Club, Chess Club, ICT &amp; Robotics, Scripture Union, and Environment Club.</li>
+  </ul>
+
+  <p><b>Sports</b> We are a powerhouse of Bulawayo sports, with a fierce but healthy rivalry against Milton High and CBC.</p>
+  <ul>
+    <li><b>The "Beez" Rugby:</b> Our pride and joy, competing at the highest schoolboy levels.</li>
+    <li><b>Summer Sports:</b> Cricket, Tennis, Swimming (at the McLachlan Pool), and Basketball.</li>
+    <li><b>Winter Sports:</b> Soccer, Hockey, and Athletics.</li>
+  </ul>
+</div>
+
+<!-- NEWS CARD -->
+<div class="card" id="news">
+  <h2>News / Announcements</h2>
+  <ul>
+    <li><b>MORE RECENT NEWS FOUND WITHIN THE PARENTS PORTAL</b></li>
+    <li><b>SDA Annual General Meeting:</b> Held every April—all parents are encouraged to attend.</li>
+    <li><b>Centenary Countdown:</b> As we approach our 100th anniversary in 2027, stay tuned for commemorative events and "Old Boys" reunions.</li>
+    <li><b>Inter-Schools Athletics:</b> Join us at Sutherby Field this term as we host the regional qualifiers.</li>
+  </ul>
+</div>
+
+<!-- CONTACT CARD -->
+<div class="card" id="contact">
+  <h2>Contact Information</h2>
+  <p>
+    Physical Address:<br>
+    2 Matopos Road, Famona, Bulawayo, Zimbabwe (Opposite ZITF Grounds).<br>
+    Social Media: <a href="https://web.facebook.com/giffordhighsch/?_rdc=1&_rdr#" target="_blank">Facebook</a><br>
+    email: <a href="mailto:gifford.orior@gmail.com">gifford.orior@gmail.com</a>
+  </p>
+  <iframe src="https://www.google.com/maps?q=2%20Matopos%20Road%20Bulawayo&output=embed"></iframe>
+</div>
+
+<!-- FOOTER CARD -->
+<div class="footer-card">
+  <p>Copyright reserved | Developed by InsyncTech</p>
+</div>
+
+<script>
+function toggleMode(){ document.body.classList.toggle("dark"); }
+function toggleMenu(){ document.getElementById("navLinks").classList.toggle("active"); }
+let slideIndex=0; showSlides();
+function showSlides(){
+  let slides=document.getElementsByClassName("slide");
+  for(let i=0;i<slides.length;i++){ slides[i].style.display="none"; }
+  slideIndex++;
+  if(slideIndex>slides.length){slideIndex=1}
+  slides[slideIndex-1].style.display="block";
+  setTimeout(showSlides,3000);
+}
+</script>
+
+</body>
+</html>
